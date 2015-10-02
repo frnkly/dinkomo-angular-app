@@ -10,8 +10,18 @@ var sourcemaps = require('gulp-sourcemaps');
 var rev = require('gulp-rev');
 
 var paths = {
-    scripts: ['assets/js/vendor/*.js', 'assets/js/dev/*.js'],
-    styles: ['assets/css/vendor/*.css', 'assets/css/dev/*.css']
+    scripts: [
+        'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/angular/angular.min.js',
+        'assets/semantic/dist/semantic.min.js',
+        'assets/js/vendor/*.js',
+        'assets/js/dev/*.js'
+    ],
+    styles: [
+        'assets/semantic/dist/semantic.min.css',
+        'assets/css/vendor/*.css',
+        'assets/css/dev/*.css'
+    ]
 };
 
 // This empties a directory?

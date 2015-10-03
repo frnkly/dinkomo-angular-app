@@ -24,26 +24,26 @@ var paths = {
     ]
 };
 
-// This empties a directory?
+// Removes existing scripts and stylesheets.
 gulp.task('clean', function(cb) {
-    del(['assets/build/*.js', 'assets/build/*.css'], cb);
+    del(['public/assets/*.js', 'public/assets/*.css'], cb);
 });
 
-// Minify scripts.
-gulp.task('scripts', ['clean'], function() {
+// Minifies and hashes scripts.
+gulp.task('scripts', /*['clean'],*/ function() {
     return gulp.src(paths.scripts)
         .pipe(sourcemaps.init())
             .pipe(minifyJS())
             .pipe(combine('learn.js'))
         .pipe(sourcemaps.write())
         .pipe(rev())
-        .pipe(gulp.dest('assets/build'))
+        .pipe(gulp.dest('public/assets'))
         .pipe(rev.manifest())
-        .pipe(gulp.dest('app/assets'));
+        .pipe(gulp.dest('assets/js'));
 });
 
-// Minify stylesheets.
-gulp.task('styles', ['clean'], function() {
+// Minifies and hashes stylesheets.
+gulp.task('styles', /*['clean'],*/ function() {
     return gulp.src(paths.styles)
         .pipe(stripCssComments())
         .pipe(sourcemaps.init())
@@ -51,12 +51,12 @@ gulp.task('styles', ['clean'], function() {
             .pipe(combine('learn.css'))
         .pipe(sourcemaps.write())
         .pipe(rev())
-        .pipe(gulp.dest('assets/build'))
+        .pipe(gulp.dest('public/assets'))
         .pipe(rev.manifest())
-        .pipe(gulp.dest('app/assets'));
+        .pipe(gulp.dest('assets/css'));
 });
 
-// Rerun the task when a file changes.
+// Reruns the tasks when a file changes.
 gulp.task('watch', function() {
     gulp.watch(paths.scripts, ['scripts']);
     gulp.watch(paths.styles, ['styles']);

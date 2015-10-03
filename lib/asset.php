@@ -7,7 +7,7 @@ class Asset
     /**
      *
      */
-    public static rev($filename)
+    public static function rev($filename)
     {
         // Find manifest file.
         list($name, $ext) = explode('.', $filename);

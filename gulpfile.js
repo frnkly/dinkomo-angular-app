@@ -10,56 +10,62 @@ var sourcemaps = require('gulp-sourcemaps');
 var rev = require('gulp-rev');
 
 var paths = {
-    scripts: [
+    css: [
+        'assets/semantic/dist/semantic.min.css',
+        'assets/css/vendor/*.css',
+        'assets/css/dev/*.css'
+    ],
+    js: [
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/angular/angular.min.js',
         'assets/semantic/dist/semantic.min.js',
         'assets/js/vendor/*.js',
         'assets/js/dev/*.js'
-    ],
-    styles: [
-        'assets/semantic/dist/semantic.min.css',
-        'assets/css/vendor/*.css',
-        'assets/css/dev/*.css'
     ]
 };
 
 // Removes existing scripts and stylesheets.
-gulp.task('clean', function(cb) {
-    del(['public/assets/*.js', 'public/assets/*.css'], cb);
+gulp.task('delete-css-rev', function(done) {
+    del('public/assets/*.css');
+    done();
 });
-
-// Minifies and hashes scripts.
-gulp.task('scripts', /*['clean'],*/ function() {
-    return gulp.src(paths.scripts)
-        .pipe(sourcemaps.init())
-            .pipe(minifyJS())
-            .pipe(combine('learn.js'))
-        .pipe(sourcemaps.write())
-        .pipe(rev())
-        .pipe(gulp.dest('public/assets'))
-        .pipe(rev.manifest())
-        .pipe(gulp.dest('assets/js'));
+gulp.task('delete-js-rev', function(done) {
+    del('public/assets/*.js');
+    done();
 });
+gulp.task('clean', ['remove-css', 'remove-js']);
 
 // Minifies and hashes stylesheets.
-gulp.task('styles', /*['clean'],*/ function() {
-    return gulp.src(paths.styles)
+gulp.task('css', ['delete-css-rev'], function() {
+    return gulp.src(paths.css)
         .pipe(stripCssComments())
         .pipe(sourcemaps.init())
             .pipe(minifyCSS())
             .pipe(combine('learn.css'))
-        .pipe(sourcemaps.write())
-        .pipe(rev())
-        .pipe(gulp.dest('public/assets'))
+            .pipe(rev())
+            .pipe(gulp.dest('public/assets'))
+        .pipe(sourcemaps.write('./'))
         .pipe(rev.manifest())
         .pipe(gulp.dest('assets/css'));
 });
 
-// Reruns the tasks when a file changes.
-gulp.task('watch', function() {
-    gulp.watch(paths.scripts, ['scripts']);
-    gulp.watch(paths.styles, ['styles']);
+// Minifies and hashes scripts.
+gulp.task('js', ['delete-js-rev'], function() {
+    return gulp.src(paths.js)
+        .pipe(sourcemaps.init())
+            .pipe(minifyJS())
+            .pipe(combine('learn.js'))
+            .pipe(rev())
+            .pipe(gulp.dest('public/assets'))
+        .pipe(sourcemaps.write('./'))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest('assets/js'));
 });
 
-gulp.task('default', ['scripts', 'styles']);
+// Reruns the tasks when a file changes.
+gulp.task('watch', function() {
+    gulp.watch(paths.js, ['js']);
+    gulp.watch(paths.css, ['css']);
+});
+
+gulp.task('default', ['css', 'js']);

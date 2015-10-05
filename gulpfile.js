@@ -9,6 +9,46 @@ var stripCssComments = require('gulp-strip-css-comments');
 var sourcemaps = require('gulp-sourcemaps');
 var rev = require('gulp-rev');
 
+//
+// CSS
+//////////////////////
+
+// Paths to CSS files.
+var css = {
+    dev: ['assets/css/vendor/*.css', 'assets/css/dev/*.css'],
+    dependencies: ['assets/semantic/dist/semantic.min.css']
+};
+
+// Removes existing stylesheets.
+gulp.task('remove-css', function(done) {
+    del('public/assets/*.css');
+    done();
+});
+
+// Combines and minifies dev CSS files.
+gulp.task('minify-css', function() {
+    return gulp.src(css.dev)
+        .pipe(stripCssComments())
+        .pipe(sourcemaps.init())
+            .pipe(minifyCSS())
+            .pipe(combine('learn.css'))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('assets/css/build'));
+});
+
+// Combines all CSS files.
+gulp.task('css', ['remove-css', 'minify-css'], function() {
+    return gulp.src(css.dependencies.concat('assets/css/build/learn.css'))
+        .pipe(sourcemaps.init())
+            .pipe(combine('learn.css'))
+            .pipe(rev())
+            .pipe(gulp.dest('public/assets'))
+        .pipe(sourcemaps.write('./'))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest('assets/css'));
+});
+
+
 var paths = {
     css: [
         'assets/semantic/dist/semantic.min.css',
@@ -25,29 +65,11 @@ var paths = {
 };
 
 // Removes existing scripts and stylesheets.
-gulp.task('delete-css-rev', function(done) {
-    del('public/assets/*.css');
-    done();
-});
 gulp.task('delete-js-rev', function(done) {
     del('public/assets/*.js');
     done();
 });
 gulp.task('clean', ['remove-css', 'remove-js']);
-
-// Minifies and hashes stylesheets.
-gulp.task('css', ['delete-css-rev'], function() {
-    return gulp.src(paths.css)
-        .pipe(stripCssComments())
-        .pipe(sourcemaps.init())
-            .pipe(minifyCSS())
-            .pipe(combine('learn.css'))
-            .pipe(rev())
-            .pipe(gulp.dest('public/assets'))
-        .pipe(sourcemaps.write('./'))
-        .pipe(rev.manifest())
-        .pipe(gulp.dest('assets/css'));
-});
 
 // Minifies and hashes scripts.
 gulp.task('js', ['delete-js-rev'], function() {

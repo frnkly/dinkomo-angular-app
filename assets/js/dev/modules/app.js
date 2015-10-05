@@ -2,7 +2,9 @@
 angular.module('app', [])
 
 // Configures the application.
-.config([])
+// .config([])
 
 // Runs the application.
-.run();
+// .run()
+
+;

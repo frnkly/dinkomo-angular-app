@@ -1,4 +1,4 @@
 
-angular.module('app').controller('SettingsController', ['$scope', function($scope) {
-
-}]);
+// angular.module('app').controller('SettingsController', ['$scope', function($scope) {
+//
+// }]);

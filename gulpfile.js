@@ -13,7 +13,7 @@ var rev = require('gulp-rev');
 // CSS
 //////////////////////
 
-// Paths to CSS files.
+// Paths to stylesheets.
 var css = {
     dev: ['assets/css/vendor/*.css', 'assets/css/dev/*.css'],
     dependencies: ['assets/semantic/dist/semantic.min.css']
@@ -48,34 +48,40 @@ gulp.task('css', ['remove-css', 'minify-css'], function() {
         .pipe(gulp.dest('assets/css'));
 });
 
+//
+// JS
+//////////////////////
 
-var paths = {
-    css: [
-        'assets/semantic/dist/semantic.min.css',
-        'assets/css/vendor/*.css',
-        'assets/css/dev/*.css'
-    ],
-    js: [
+// Paths to javascript files.
+var js = {
+    dev: ['assets/js/vendor/*.js', 'assets/js/dev/*.js'],
+    dependencies: [
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/angular/angular.min.js',
-        'assets/semantic/dist/semantic.min.js',
-        'assets/js/vendor/*.js',
-        'assets/js/dev/*.js'
+        'assets/semantic/dist/semantic.min.js'
     ]
 };
 
-// Removes existing scripts and stylesheets.
-gulp.task('delete-js-rev', function(done) {
+// Removes existing javascript files.
+gulp.task('remove-js', function(done) {
     del('public/assets/*.js');
     done();
 });
-gulp.task('clean', ['remove-css', 'remove-js']);
 
-// Minifies and hashes scripts.
-gulp.task('js', ['delete-js-rev'], function() {
-    return gulp.src(paths.js)
+// Combines and minifies dev javascript files.
+gulp.task('minify-js', function() {
+    return gulp.src(js.dev)
         .pipe(sourcemaps.init())
             .pipe(minifyJS())
+            .pipe(combine('learn.js'))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('assets/js/build'));
+});
+
+// Combines all javascript files.
+gulp.task('js', ['remove-js', 'minify-js'], function() {
+    return gulp.src(js.dependencies.concat('assets/js/build/learn.js'))
+        .pipe(sourcemaps.init())
             .pipe(combine('learn.js'))
             .pipe(rev())
             .pipe(gulp.dest('public/assets'))
@@ -86,8 +92,8 @@ gulp.task('js', ['delete-js-rev'], function() {
 
 // Reruns the tasks when a file changes.
 gulp.task('watch', function() {
-    gulp.watch(paths.js, ['js']);
-    gulp.watch(paths.css, ['css']);
+    gulp.watch(css.dev, ['css']);
+    gulp.watch(js.dev, ['js']);
 });
 
 gulp.task('default', ['css', 'js']);

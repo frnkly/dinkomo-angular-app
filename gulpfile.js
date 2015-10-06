@@ -1,13 +1,18 @@
 
 // What are these called?
-var gulp = require('gulp');
-var del = require('del');
-var combine = require('gulp-concat');
-var minifyJS = require('gulp-uglify');
-var minifyCSS = require('gulp-minify-css');
-var stripCssComments = require('gulp-strip-css-comments');
-var sourcemaps = require('gulp-sourcemaps');
-var rev = require('gulp-rev');
+var gulp = require('gulp'),
+    del = require('del'),
+    combine = require('gulp-concat'),
+
+    buildSemantic = require('./assets/semantic/tasks/build'),
+
+    minifyJS = require('gulp-uglify'),
+
+    minifyCSS = require('gulp-minify-css'),
+    stripCssComments = require('gulp-strip-css-comments'),
+
+    sourcemaps = require('gulp-sourcemaps'),
+    rev = require('gulp-rev');
 
 //
 // CSS
@@ -89,6 +94,12 @@ gulp.task('js', ['remove-js', 'minify-js'], function() {
         .pipe(rev.manifest())
         .pipe(gulp.dest('assets/js'));
 });
+
+//
+// Other
+//////////////////////
+
+gulp.task('build semantic', buildSemantic);
 
 // Reruns the tasks when a file changes.
 gulp.task('watch', function() {

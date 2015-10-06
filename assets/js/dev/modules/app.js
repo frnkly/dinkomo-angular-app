@@ -1,10 +1,14 @@
 
-angular.module('app', [])
+angular.module('learn', [])
 
-// Configures the application.
-// .config([])
+.controller('GeneralController', ['$scope', '$http', function($scope, $http) {
 
-// Runs the application.
-// .run()
+    $scope.name = 'Kojo';
 
-;
+}])
+
+.controller('TestController', ['$scope', function($scope) {
+
+    // console.log($scope.name);
+
+}]);

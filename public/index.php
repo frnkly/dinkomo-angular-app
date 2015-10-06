@@ -19,10 +19,10 @@ require '../lib/asset.php';
 
     </div>
 
-    <!-- <script type="text/javascript" src="<?= Asset::rev('learn.js') ?>"></script> -->
-    <script type="text/javascript" src="temp/angular.min.js"></script>
+    <script type="text/javascript" src="<?= Asset::rev('learn.js') ?>"></script>
+    <!-- <script type="text/javascript" src="temp/angular.min.js"></script>
     <script type="text/javascript" src="temp/app.js?<?= time() ?>"></script>
     <script type="text/javascript" src="temp/GeneralController.js?<?= time() ?>"></script>
-    <script type="text/javascript" src="temp/TestController.js?<?= time() ?>"></script>
+    <script type="text/javascript" src="temp/TestController.js?<?= time() ?>"></script> -->
 </body>
 </html>

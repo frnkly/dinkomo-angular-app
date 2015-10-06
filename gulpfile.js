@@ -54,7 +54,7 @@ gulp.task('css', ['remove-css', 'minify-css'], function() {
 
 // Paths to javascript files.
 var js = {
-    dev: ['assets/js/vendor/*.js', 'assets/js/dev/*.js'],
+    dev: ['assets/js/vendor/*.js', 'assets/js/dev/**/*.js'],
     dependencies: [
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/angular/angular.min.js',

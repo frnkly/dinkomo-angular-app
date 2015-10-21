@@ -4,8 +4,6 @@ var gulp = require('gulp'),
     del = require('del'),
     combine = require('gulp-concat'),
 
-    buildSemantic = require('./assets/semantic/tasks/build'),
-
     minifyJS = require('gulp-uglify'),
 
     minifyCSS = require('gulp-minify-css'),
@@ -21,7 +19,10 @@ var gulp = require('gulp'),
 // Paths to stylesheets.
 var css = {
     dev: ['assets/css/vendor/*.css', 'assets/css/dev/*.css'],
-    dependencies: ['assets/semantic/dist/semantic.min.css']
+    dependencies: [
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/font-awesome/css/font-awesome.min.css'
+    ]
 };
 
 // Removes existing stylesheets.
@@ -62,8 +63,10 @@ var js = {
     dev: ['assets/js/vendor/*.js', 'assets/js/dev/**/*.js'],
     dependencies: [
         'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.min.js',
         'node_modules/angular/angular.min.js',
-        'assets/semantic/dist/semantic.min.js'
+        'node_modules/angular-route/angular-route.min.js',
+        'node_modules/ngstorage/ngStorage.min.js'
     ]
 };
 
@@ -98,8 +101,6 @@ gulp.task('js', ['remove-js', 'minify-js'], function() {
 //
 // Other
 //////////////////////
-
-gulp.task('build semantic', buildSemantic);
 
 // Reruns the tasks when a file changes.
 gulp.task('watch', function() {

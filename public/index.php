@@ -5,24 +5,25 @@ require '../lib/asset.php';
 
 ?>
 <!doctype html>
-<html lang="en" ng-app="learn">
+<html lang="en" data-ng-app="learn">
 <head>
     <meta charset="utf-8">
     <title>Di Nkomo Learning App</title>
     <link rel="stylesheet" href="<?= Asset::rev('learn.css') ?>">
 </head>
-<body ng-controller="GeneralController">
+<body>
+    <div data-ng-controller="MainController" class="container">
+        <header data-ng-include="'/views/partials/header.html?' + assetVersion">
 
-    <p>Nothing here {{'yet' + '!'}}, {{ name }}</p>
+        </header>
 
-    <div class="" ng-controller="TestController">
+        <section data-ng-view=""></section>
 
+        <footer data-ng-include="'/views/partials/footer.html?' + assetVersion">
+
+        </footer>
     </div>
 
     <script type="text/javascript" src="<?= Asset::rev('learn.js') ?>"></script>
-    <!-- <script type="text/javascript" src="temp/angular.min.js"></script>
-    <script type="text/javascript" src="temp/app.js?<?= time() ?>"></script>
-    <script type="text/javascript" src="temp/GeneralController.js?<?= time() ?>"></script>
-    <script type="text/javascript" src="temp/TestController.js?<?= time() ?>"></script> -->
 </body>
 </html>

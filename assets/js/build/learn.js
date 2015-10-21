@@ -1,5 +1,6 @@
-var maintest=!0;
-var gtest=!0;
-var stest=!0;
-angular.module("learn",[]).controller("GeneralController",["$scope","$http",function(o,e){o.name="Kojo"}]).controller("TestController",["$scope",function(o){}]);
+var nkomoLearningApp=angular.module("learn",["ngStorage","ngRoute","nkomo.controllers","nkomo.directives","nkomo.services","nkomo.rover"]),_appVersion="0.0.1",_isLocal="localhost"==window.location.hostname||window.location.hostname.match(/.*\.local$/i)||window.location.hostname.match(/.*\.vagrant$/i)?!0:!1,_assetVersion=_isLocal?Date.now():_appVersion;nkomoLearningApp.constant("appVersion",_appVersion).constant("isLocalEnvironment",_isLocal).constant("assetVersion",_assetVersion);var nkomoServices=angular.module("nkomo.services",["nkomo.rover"]),nkomoDirectives=angular.module("nkomo.directives",["nkomo.rover"]),nkomoControllers=angular.module("nkomo.controllers",["nkomo.rover"]);nkomoLearningApp.config(["$routeProvider","assetVersion",function(o,n){return o.when("/about",{templateUrl:"/views/about.html?"+n,controller:"AboutController"}).when("/:langCode?/:searchTerm?",{templateUrl:"/views/search.html?"+n,controller:"SearchController"}).otherwise({redirectTo:"/"})}]).run(["$rootScope","$location","Rover",function(o,n,e){e.debug("Running app...")}]);
+angular.module("nkomo.controllers").controller("ConfigController",["$scope",function(o){}]);
+angular.module("nkomo.controllers").controller("MainController",["$scope","assetVersion",function(o,n){o.assetVersion=n}]);
+angular.module("nkomo.controllers").controller("SearchController",["$scope",function(o){o.name="Kwaku"}]);
+angular.module("nkomo.rover",[]).service("Rover",["$window","$sessionStorage","$route","$location",function(o,n,t,i){this.timestamp=Date.now(),this.isLocal="localhost"==window.location.hostname||window.location.hostname.match(/.*\.local$/i)||window.location.hostname.match(/.*\.vagrant$/i)?!0:!1,this.debug=function(o){this.isLocal&&console&&console.log(o)}}]);
 //# sourceMappingURL=learn.js.map

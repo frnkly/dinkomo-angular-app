@@ -3,7 +3,7 @@ body {
     position: relative;
 	color: #333;
 	font: normal 21px/1.618 'Segoe UI', 'Times New Roman', 'Serif';
-	background-color: #f7f7f7;
+	/*background-color: #f7f7f7;*/
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
@@ -52,7 +52,7 @@ h1 {
     width: 100%;
     text-align: center;
     font-size: 1.3em;
-    font-family: 'Times New Roman', 'Serif';
+    /*font-family: 'Times New Roman', 'Serif';*/
 }
 h1 em {
     letter-spacing: 5px;

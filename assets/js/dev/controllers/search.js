@@ -3,10 +3,15 @@
  */
 angular.module('nkomo.controllers')
 
-.controller('SearchController', ['$scope',
-    function($scope) {
+.controller('SearchController', ['$scope', '$routeParams', 'DefinitionFactory',
+    function($scope, $routeParams, DefinitionFactory) {
 
-        $scope.name = 'Kwaku';
+        $scope.params = $routeParams;
 
+        // Search term.
+        $scope.searchTerm = $routeParams.searchTerm;
+
+        // Search results.
+        $scope.results = [];
     }
 ]);

@@ -13,15 +13,9 @@ require '../lib/asset.php';
 </head>
 <body>
     <div data-ng-controller="MainController" class="container">
-        <header data-ng-include="'/views/partials/header.html?' + assetVersion">
-
-        </header>
-
+        <header data-ng-include="'/views/partials/header.html?' + assetVersion"></header>
         <section data-ng-view=""></section>
-
-        <footer data-ng-include="'/views/partials/footer.html?' + assetVersion">
-
-        </footer>
+        <footer data-ng-include="'/views/partials/footer.html?' + assetVersion"></footer>
     </div>
 
     <script type="text/javascript" src="<?= Asset::rev('learn.js') ?>"></script>

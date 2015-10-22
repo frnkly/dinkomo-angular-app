@@ -37,21 +37,26 @@ var nkomoControllers = angular.module('nkomo.controllers', ['nkomo.rover']);
 nkomoLearningApp.config(['$routeProvider', 'assetVersion',
     function($routeProvider, assetVersion) {
 
+        // Landing page.
+        return $routeProvider.when('/', {
+            redirectTo: '/dict'
+        })
+
         // About page.
-        return $routeProvider.when('/about', {
+        .when('/about', {
 			templateUrl: '/views/about.html?' + assetVersion,
             controller: 'AboutController'
 		})
 
         // Search pages.
-        .when('/:langCode?/:searchTerm?', {
+        .when('/dict/:searchTerm?', {
 			templateUrl: '/views/search.html?' + assetVersion,
             controller: 'SearchController'
         })
 
-        // Else, redirect to homepage.
+        // Else, redirect to search page.
         .otherwise({
-			redirectTo: '/'
+			redirectTo: '/dict'
 		});
     }
 ])

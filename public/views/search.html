@@ -1,5 +1,47 @@
 
-<h1>
-    Di Nkɔmɔ
-    <small>The Book of Native Tongues</small>
-</h1>
+<!-- Title -->
+<div class="page-header">
+    <h1>
+        Di Nkɔmɔ
+        <small>The Book of Native Tongues</small>
+    </h1>
+</div>
+
+<!-- Search form -->
+<div class="row">
+    <div class="col-sm-12">
+        <form name="search">
+
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-danger">&#10005;</button>
+                </span>
+
+                <input
+                    type="text"
+                    ng-model="searchTerm"
+                    class="form-control"
+                    placeholder="start here"
+                    autocomplete="off">
+
+                <span class="input-group-btn">
+                    <button class="btn btn-success">&#10163;</button>
+                </span>
+            </div>
+
+        </form>
+    </div>
+</div>
+<br>
+
+<!-- Search results -->
+<div ng-hide="results.length > 0" class="row">
+    <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
+        Use this <em>&#10548;</em> to lookup words in another language.
+    </div>
+</div>
+<div ng-show="results.length > 0" ng-repeat="result in results" class="row">
+    <div class="col-sm-12 col-md-6 col-md-offset-3">
+
+    </div>
+</div>

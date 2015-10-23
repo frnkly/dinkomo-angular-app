@@ -6,16 +6,22 @@ angular.module('nkomo.services')
 .factory('DefinitionFactory', ['$http',
     function($http) {
 
-        var endpoint = 'http://api.dinkomo.vagrant/v0.1';
+        var apiEndpoint = 'http://api.dinkomo.vagrant/v0.1';
 
         return {
-            
-            count: function() {
-                return $http.get(endpoint + '/definition/count');
+
+            count: function(type)
+            {
+                type = type || 'word';
+
+                return $http.get(apiEndpoint + '/' + type + '/count');
             },
 
-            search : function(term) {
-    			return $http.get(endpoint + '/definition/search/' + term);
+            search : function(term, type)
+            {
+                type = type || 'word';
+
+    			return $http.get(apiEndpoint + '/' + type + '/search/' + term);
     		}
         };
     }

@@ -1,18 +1,13 @@
-html, body, a, div, header, input, label, section {
-	margin: 0;
-	padding: 0;
-    position: inherit;
-}
 
 body {
     position: relative;
 	color: #333;
-	/*font: normal 21px/1.618 'sinanova', Serif;*/
-	/*font: normal 21px/1.618 'Segoe UI', 'Times New Roman', 'Serif';*/
-	font: normal 21px/1.618 'Times New Roman', 'Serif';
-	background-color: #f7f7f7;
+	font: normal 21px/1.618 'Segoe UI', 'Times New Roman', 'Serif';
+	/*background-color: #f7f7f7;*/
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
 }
-
 a, a:visited {
 	position: relative;
 	color: #333;
@@ -53,23 +48,30 @@ em {
 	font-size: 1.2em;
 }
 h1 {
-	margin: 2px auto 5px;
-	font-size: 1.5em;
-	font-weight: normal;
-	text-align: center;
+    margin: 5px auto 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.3em;
+    /*font-family: 'Times New Roman', 'Serif';*/
 }
 h1 em {
     letter-spacing: 5px;
 }
-h2 {
-	margin: 5px auto;
-	font-size: 1.3em;
-	font-weight: bold;
+h1 small {
+    display: block;
+    width: 100%;
+    margin: 20px auto 10px;
 }
-h3 {
+h2 {
 	margin: 2px auto;
 	font-size: 1.2em;
-	letter-spacing: 1.5px;
+    font-weight: bold;
+}
+h3 {
+    margin: 5px auto;
+    font-size: 1.1em;
+    font-weight: normal;
+    letter-spacing: 3px;
 }
 i {
     font-style: italic;
@@ -85,15 +87,6 @@ small {
 	font-size: 0.5em;
 }
 
-.left {
-    text-align: left;
-}
-.right {
-    text-align: right;
-}
-.center {
-	text-align: center;
-}
 .clr {
 	clear: both;
 }
@@ -134,5 +127,4 @@ small {
     .edit-res {
         font-size: 0.9em;
     }
-
 }

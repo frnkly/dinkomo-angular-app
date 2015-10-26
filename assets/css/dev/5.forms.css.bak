@@ -18,17 +18,17 @@
 /*
  * Search form
  */
-.form.search .wrapper {
+.form.search .container {
 	position: relative;
 	margin: 5px auto;
 	width: 100%;
 	border-bottom: 1px solid #aaa;
 }
-.form.search .wrapper input {
+.form.search .container input {
 	float: left;
 	padding: 8px;
 }
-.form.search .wrapper input[type="button"], .form.search .wrapper input[type="submit"] {
+.form.search .container input[type="button"], .form.search .container input[type="submit"] {
 	display: block;
 	width: 40px;
 	margin: 0;
@@ -39,10 +39,10 @@
 	border-radius: 0;
 	box-shadow: none;
 }
-.form.search .wrapper input[type="button"]:hover, .form.search .wrapper input[type="submit"]:hover {
+.form.search .container input[type="button"]:hover, .form.search .container input[type="submit"]:hover {
 	color: #333;
 }
-.form.search .wrapper input[name="q"] {
+.form.search .container input[name="q"] {
 	width: 454px;
 	text-align: center;
 }
@@ -161,7 +161,7 @@ a.button:after {
 
 @media only screen and (max-width: 600px) {
 
-    .form.search .wrapper {
+    .form.search .container {
         width: 100%;
         position: relative;
     }
@@ -170,13 +170,13 @@ a.button:after {
         font-size: 0.8em;
     }
 
-    .form.search .wrapper input[name="q"] {
+    .form.search .container input[name="q"] {
         width: 65%;
         margin: 0 2.5%;
         padding: 0;
     }
 
-    .form.search .wrapper input[type="button"], .form.search .wrapper input[type="submit"] {
+    .form.search .container input[type="button"], .form.search .container input[type="submit"] {
         width: 15%;
         margin: 0;
         padding: 0;

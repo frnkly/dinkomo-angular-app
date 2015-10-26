@@ -21,7 +21,7 @@ angular.module('nkomo.services')
             {
                 type = type || 'word';
 
-    			return $http.get(apiEndpoint + '/' + type + '/search/' + term);
+    			return $http.get('http://api.dinkomo.vagrant/v0.1/' + type + '/search/' + term);
     		}
         };
     }

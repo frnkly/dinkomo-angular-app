@@ -8,7 +8,7 @@
 <!-- Search form -->
 <section class="form search">
 
-	<form ng-sbumit="lookup()" name="search">
+	<form ng-submit="testLookup()" name="search">
 		<div class="wrapper">
 			<input class="remove-btn-style" name="clear" type="button" value="&#10005;">
 			<input ng-model="searchTerm" name="q" type="text" placeholder="start here" autocomplete="off">
@@ -25,8 +25,22 @@
         Use this <em>&#10548;</em> to lookup {{ searchTerm || 'words' }} in another language.
     </div>
 </div>
-<div ng-show="results.length > 0" ng-repeat="result in results" class="row">
-    <div class="col-sm-12 col-md-6 col-md-offset-3">
-        {{ result }}
+<div ng-show="results.length > 0" id="results">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            we found <em>{{ results.length }}</em> definitions for <i>{{ searchTerm }}</i>.
+        </div>
+    </div>
+    <ol>
+        <li ng-repeat="def in results">
+            <a href="#">{{ def.title }}</a> <small>({{ def.sub_type }})</small>
+            is a {{ def.type }} that means <i>{{ def.translation.practical.eng }}</i>
+            in <a href="#">{{ def.main_language.name }}</a>
+        </li>
+    </ol>
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
+            {{ result }}
+        </div>
     </div>
 </div>

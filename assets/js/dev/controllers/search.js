@@ -16,6 +16,53 @@ angular.module('nkomo.controllers')
         // Search results.
         $scope.results = [];
 
+        $scope.testLookup = function() {
+            $scope.results = [
+                {
+                    "title": "ɔdɔ",
+                    "alt_titles": " do,  dɔ,  odo",
+                    "type": "word",
+                    "sub_type": "noun",
+                    "translation": {
+                        "practical": {"eng": "love"},
+                        "literal": {"eng": ""},
+                        "meaning": {"eng": "an intense feeling of deep affection"}
+                    },
+                    "language": {
+                        "twi": "Asante Twi",
+                        "aka": "Akan"
+                    },
+                    "main_language": {
+                        "code": "twi",
+                        "parent_code": "aka",
+                        "name": "Asante Twi",
+                        "alt_names": " Ashanti,  Twi"
+                    }
+                },
+                {
+                    "title": "ɔdɔ",
+                    "alt_titles": " do,  dɔ,  odo",
+                    "type": "word",
+                    "sub_type": "noun",
+                    "translation": {
+                        "practical": {"eng": "love"},
+                        "literal": {"eng": ""},
+                        "meaning": {"eng": "an intense feeling of deep affection"}
+                    },
+                    "language": {
+                        "twi": "Asante Twi",
+                        "aka": "Akan"
+                    },
+                    "main_language": {
+                        "code": "twi",
+                        "parent_code": "aka",
+                        "name": "Asante Twi",
+                        "alt_names": " Ashanti,  Twi"
+                    }
+                }
+            ];
+        };
+
         $scope.lookup = function()
         {
             Rover.debug('Looking up "'+ $scope.searchTerm +'"...');

@@ -71,6 +71,7 @@ angular.module('nkomo.controllers')
 
                 // On success.
                 function(response) {
+                    Rover.debug('success');
                     Rover.debug(response)
                 },
 

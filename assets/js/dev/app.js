@@ -11,7 +11,7 @@ var nkomoLearningApp = angular.module('learn', [
 // App constants.
 //
 
-var _appVersion = '0.0.1';
+var _appVersion = '0.0.2';
 var _isLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -45,13 +45,25 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
         // About page.
         .when('/about', {
 			templateUrl: '/views/about.html?' + assetVersion,
-            controller: 'AboutController'
+            controller: 'PageController'
+		})
+
+        // Stats page.
+        .when('/stats', {
+			templateUrl: '/views/stats.html?' + assetVersion,
+            controller: 'PageController'
 		})
 
         // Search pages.
         .when('/dict/:searchTerm?', {
 			templateUrl: '/views/search.html?' + assetVersion,
             controller: 'SearchController'
+        })
+
+        // Dictionary pages.
+        .when('/:langCode/:searchTerm?', {
+			templateUrl: '/views/definition.html?' + assetVersion,
+            controller: 'DefinitionController'
         })
 
         // Else, redirect to search page.

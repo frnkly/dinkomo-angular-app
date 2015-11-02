@@ -16,14 +16,22 @@ angular.module('nkomo.controllers')
         // Search results.
         $scope.results = [];
 
-        $scope.lookup = function()
+        // Looks up a word
+        $scope.lookup = function(searchTerm)
         {
             Rover.debug('Looking up "'+ $scope.searchTerm +'"...');
 
-            DefinitionFactory.search($scope.searchTerm).then(
+            // Notify user that we're querying the API.
+            $scope.results = [];
+            $scope.isSearching = true;
+
+            searchTerm = searchTerm || $scope.searchTerm;
+
+            DefinitionFactory.search(searchTerm).then(
 
                 // On success.
                 function(response) {
+                    $scope.isSearching = false;
                     $scope.results = response.data;
                 },
 
@@ -31,8 +39,21 @@ angular.module('nkomo.controllers')
                 function(response) {
                     Rover.debug('Error');
                     Rover.debug(response);
+                    $scope.isSearching = false;
                 }
             );
         };
+
+        // Clears the search form.
+        $scope.clear = function()
+        {
+            $scope.results = [];
+            $scope.searchTerm = '';
+        };
+
+        // If a search term already exists, query the API.
+        if ($routeParams.searchTerm) {
+            $scope.lookup($routeParams.searchTerm);
+        }
     }
 ]);

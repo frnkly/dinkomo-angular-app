@@ -60,7 +60,7 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
             controller: 'SearchController'
         })
 
-        // Dictionary pages.
+        // Definition pages.
         .when('/:langCode/:searchTerm?', {
 			templateUrl: '/views/definition.html?' + assetVersion,
             controller: 'DefinitionController'

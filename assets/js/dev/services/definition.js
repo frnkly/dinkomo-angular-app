@@ -18,14 +18,19 @@ angular.module('nkomo.services')
                 return $http.get(apiEndpoint + type + '/count');
             },
 
-            search : function(term, type)
+            search : function(term, definitionType, langCode, searchMethod)
             {
-                type = type || 'word';
+                langCode = langCode || '';
+                definitionType = definitionType || 'word';
+                var endpoint = apiEndpoint + definitionType + '/search/' + term;
 
-    			return $http({
-                    method: 'GET',
-                    url: apiEndpoint + type + '/search/' + term
-                });
+                // Narrow search by language.
+                endpoint += '?lang=' + langCode;
+
+                // Specify search method.
+                endpoint += '&method=fulltext';
+
+    			return $http({method: 'GET', url: endpoint});
     		}
         };
     }

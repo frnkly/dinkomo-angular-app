@@ -8,26 +8,32 @@ angular.module('nkomo.controllers')
 
         Rover.debug('SearchController');
 
-        $scope.params = $routeParams;
-
-        // Search term.
-        $scope.searchTerm = $routeParams.searchTerm;
+        // Search parameters.
+        $scope.searchTerm = $routeParams.searchTerm ? $routeParams.searchTerm.replace('_', ' ') : null;
+        $scope.langCode = $routeParams.langCode;
 
         // Search results.
         $scope.results = [];
 
         // Looks up a word
-        $scope.lookup = function(searchTerm)
+        $scope.lookup = function(searchTerm, langCode)
         {
-            Rover.debug('Looking up "'+ $scope.searchTerm +'"...');
+            // Default values.
+            searchTerm = searchTerm || $scope.searchTerm;
+            langCode = langCode || $scope.langCode;
+
+            // Performance check.
+            if (searchTerm.length < 1) {
+                return;
+            }
+
+            Rover.debug('Looking up "'+ searchTerm +'"...');
 
             // Notify user that we're querying the API.
             $scope.results = [];
             $scope.isSearching = true;
 
-            searchTerm = searchTerm || $scope.searchTerm;
-
-            DefinitionFactory.search(searchTerm).then(
+            DefinitionFactory.search(searchTerm, 'word', langCode).then(
 
                 // On success.
                 function(response) {
@@ -51,9 +57,28 @@ angular.module('nkomo.controllers')
             $scope.searchTerm = '';
         };
 
+        // Generates the URL for a definition.
+        $scope.url = function(def)
+        {
+            // Performance check.
+            if (!def || !def.type) {
+                return '#/dict';
+            }
+
+            var url = '#/dict', alias = def.title.replace(' ', '_');
+
+            switch (def.type)
+            {
+                case 'word':
+                    url = '#/' + def.mainLanguage.code + '/define/' + alias;
+            }
+
+            return url;
+        };
+
         // If a search term already exists, query the API.
         if ($routeParams.searchTerm) {
-            $scope.lookup($routeParams.searchTerm);
+            $scope.lookup();
         }
     }
 ]);

@@ -1,1 +1,24 @@
 
+<h1>{{ searchTerm }}</h1>
+
+<div class="center pad-bottom">
+    Is a word in <em><a href="#">[language]</a></em> that translates to:
+</div>
+
+<div class="definitions">
+    <div ng-repeat="def in results" class="definition">
+        <span ng-hide="def.uniqueId === results[0].uniqueId" class="or">or</span>
+
+        <h3>
+            <span class="edit-res">
+                <a href="#" class="fa fa-pencil"></a>
+            </span>
+
+            &ldquo; {{ def.translation.practical.eng }} &rdquo;
+        </h3>
+
+        {{ def.translation.meaning.eng }}
+
+        {{ 'Alternatively: ' + def.translation.meaning.eng || '' }}
+    </div>
+</div>

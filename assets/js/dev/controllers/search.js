@@ -3,14 +3,38 @@
  */
 angular.module('nkomo.controllers')
 
-.controller('SearchController', ['$scope', '$routeParams', 'DefinitionFactory', 'Rover',
-    function($scope, $routeParams, DefinitionFactory, Rover) {
+.controller('SearchController', ['$scope', '$routeParams', '$sessionStorage', 'DefinitionFactory', 'Rover',
+    function($scope, $routeParams, $sessionStorage, DefinitionFactory, Rover) {
 
         Rover.debug('SearchController');
 
         // Search parameters.
         $scope.searchTerm = $routeParams.searchTerm ? $routeParams.searchTerm.replace('_', ' ') : null;
         $scope.langCode = $routeParams.langCode;
+
+        // Language data.
+        $scope.language = $routeParams.langCode ?
+            ($sessionStorage.languages[$routeParams.langCode] || null) : false;
+
+        if ($scope.language === null)
+        {
+            Rover.debug('Retrieving language with code "'+ $scope.langCode +'"...');
+
+            LanguageFactory.get($scope.langCode).then(
+
+                // On success.
+                function(response) {
+
+                    // Save the languge object in the $scope and the $sessionStorage.
+                    $scope.language = $sessionStorage.languages[$scope.langCode] = response.data;
+                },
+
+                // On error.
+                function(response) {
+                    Rover.debug('Could not retrieve language data.');
+                }
+            );
+        }
 
         // Search results.
         $scope.results = [];

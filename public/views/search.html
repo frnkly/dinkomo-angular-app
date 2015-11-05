@@ -1,7 +1,10 @@
 
 <!-- Title -->
 <div class="title">
-    Di Nkɔmɔ<br>
+    <span ng-hide="language">Di Nkɔmɔ</span>
+    <span ng-show="language">{{ language.name }}</span>
+
+    <br>
     <small>A Collection Of Cultures</small>
 </div>
 
@@ -30,8 +33,7 @@
 <div ng-hide="results.length > 0 || isSearching" class="row">
     <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
         Use this <em>&#10548;</em> to lookup {{ searchTerm || 'words' }} in another language.
-    </div>
-</div>
+    </div
 
 <!-- Loading search results -->
 <div ng-show="isSearching" class="text-center">

@@ -13,6 +13,7 @@ require '../lib/asset.php';
 </head>
 <body>
     <div data-ng-controller="MainController" class="container">
+        <aside data-ng-include="'/views/partials/navigation.html?' + assetVersion"></aside>
         <header data-ng-include="'/views/partials/header.html?' + assetVersion"></header>
         <section data-ng-view=""></section>
         <footer data-ng-include="'/views/partials/footer.html?' + assetVersion"></footer>

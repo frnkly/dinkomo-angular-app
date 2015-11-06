@@ -1,0 +1,19 @@
+
+aside {
+    position: fixed;
+    top: 50px;
+    left: 15%;
+}
+
+aside a, aside a:visited {
+	color: #aaa;
+}
+aside a:after {
+	background-color: #aaa;
+}
+aside a.fa {
+	margin: 0 10px;
+}
+aside a.fa:hover {
+	color: #333;
+}

@@ -40,7 +40,7 @@ angular.module('nkomo.controllers')
         }
 
         // Search results.
-        $scope.results = [];
+        $scope.results = null;
 
         // Looks up a word
         $scope.lookup = function(searchTerm, langCode)
@@ -80,7 +80,7 @@ angular.module('nkomo.controllers')
         // Clears the search form.
         $scope.clear = function()
         {
-            $scope.results = [];
+            $scope.results = null;
             $scope.searchTerm = '';
         };
 

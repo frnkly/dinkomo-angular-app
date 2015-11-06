@@ -3,11 +3,8 @@
  */
 angular.module('nkomo.services')
 
-.factory('DefinitionFactory', ['$http',
-    function($http) {
-
-        var apiEndpoint = 'http://api.dinkomo.vagrant/v0.1/';
-        // var apiEndpoint = 'http://api.d.frnk.ca/v0.1/';
+.factory('DefinitionFactory', ['$http', 'apiEndpoint',
+    function($http, apiEndpoint) {
 
         return {
 
@@ -15,14 +12,14 @@ angular.module('nkomo.services')
             {
                 type = type || 'word';
 
-                return $http.get(apiEndpoint + type + '/count');
+                return $http.get(apiEndpoint + '/' + type + '/count');
             },
 
             search : function(term, definitionType, langCode, searchMethod)
             {
                 langCode = langCode || '';
                 definitionType = definitionType || 'word';
-                var endpoint = apiEndpoint + definitionType + '/search/' + term;
+                var endpoint = apiEndpoint + '/' + definitionType + '/search/' + term;
 
                 // Narrow search by language.
                 endpoint += '?lang=' + langCode;

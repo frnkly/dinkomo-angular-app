@@ -17,10 +17,12 @@ var _isLocal =
         window.location.hostname.match(/.*\.local$/i) ||
         window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 var _assetVersion = _isLocal ? Date.now() : _appVersion;
+var _apiEndpoint = _isLocal ? 'http://api.dinkomo.vagrant/v0.1' : 'http://api.d.frnk.ca/v0.1';
 
 nkomoLearningApp.constant('appVersion', _appVersion)
                 .constant('isLocalEnvironment', _isLocal)
-                .constant('assetVersion', _assetVersion);
+                .constant('assetVersion', _assetVersion)
+                .constant('apiEndpoint', _apiEndpoint);
 
 //
 // Initialize modules so that we can use them from different files.

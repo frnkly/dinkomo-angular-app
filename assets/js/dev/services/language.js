@@ -3,11 +3,8 @@
  */
 angular.module('nkomo.services')
 
-.factory('LanguageFactory', ['$http',
-    function($http) {
-
-        var apiEndpoint = 'http://api.dinkomo.vagrant/v0.1';
-        // var apiEndpoint = 'http://api.d.frnk.ca/v0.1';
+.factory('LanguageFactory', ['$http', 'apiEndpoint',
+    function($http, apiEndpoint) {
 
         return {
 

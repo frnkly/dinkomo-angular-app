@@ -8,73 +8,93 @@
     <small>A Collection Of Cultures</small>
 </div>
 
-<!-- Search form -->
-<section class="form search">
-
-	<form ng-submit="lookup()" name="search">
-		<div class="wrapper">
-
-            <!-- Clear button -->
-			<input ng-click="clear()" class="remove-btn-style" name="clear" type="button" value="&#10005;">
-
-            <!-- Search input -->
-			<input ng-model="searchTerm" name="q" type="text" placeholder="start here" autocomplete="off">
-
-            <!-- Submit button -->
-			<input class="remove-btn-style" type="submit" value="&#10163;">
-
-			<div class="clr"></div>
-		</div>
-	</form>
-
-</section>
-
-<!-- Search results placeholder -->
-<div ng-hide="results.length > 0 || isSearching" class="row">
-    <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
-        Use this <em>&#10548;</em> to lookup {{ searchTerm || 'words' }}
-        in {{ language.name || 'another language' }}.
-    </div>
-</div>
-
-<!-- Loading search results -->
-<div ng-show="isSearching" class="text-center">
-    <br>
+<!-- Shows loading animation while language is being fetched -->
+<div ng-show="language === null" class="text-center">
     <i class="fa fa-spinner fa-spin"></i>
 </div>
 
-<!-- Search results. -->
-<div ng-show="results.length > 0 && !isSearching" id="results">
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            we found <em>{{ results.length }}</em> definitions for <i>{{ searchTerm }}</i>.
-        </div>
-    </div>
-    <ol>
-        <li ng-repeat="def in results">
-            <a href="{{ url(def) }}">{{ def.title }}</a> <small>({{ def.sub_type }})</small>
-            is a {{ def.type }} that means <i>{{ def.translation.practical.eng }}</i>
-            in <a href="#/{{ def.mainLanguage.code }}">{{ def.mainLanguage.name }}</a>
-        </li>
-    </ol>
-    <div class="row">
+<!-- Displays page content once language has been fetched -->
+<div ng-show="language !== null">
+
+    <!-- Search form -->
+    <section class="form search">
+
+    	<form ng-submit="lookup()" name="search">
+    		<div class="wrapper">
+
+                <!-- Clear button -->
+    			<input ng-click="clear()" class="remove-btn-style" name="clear" type="button" value="&#10005;">
+
+                <!-- Search input -->
+    			<input ng-model="searchTerm" name="q" type="text" placeholder="start here" autocomplete="off">
+
+                <!-- Submit button -->
+    			<input class="remove-btn-style" type="submit" value="&#10163;">
+
+    			<div class="clr"></div>
+    		</div>
+    	</form>
+
+    </section>
+
+    <!-- Search results placeholder -->
+    <div ng-show="results === null && !isSearching" class="row">
         <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
-            {{ result }}
+            Use this <em>&#10548;</em> to lookup {{ searchTerm || 'words' }}
+            in {{ language.name || 'another language' }}.
         </div>
     </div>
-</div>
 
-<!-- Language details -->
-<div ng-show="language">
-    <h3>A Little Background on {{ language.name }}...</h3>
+    <!-- Loading search results -->
+    <div ng-show="isSearching" class="text-center">
+        <br>
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
 
-    <div class="meta">
+    <!-- Search results. -->
+    <div ng-show="results.length && !isSearching" id="results">
         <div class="row">
-            It is also refered to as: {{ language.alt_names }}
+            <div class="col-sm-12 text-center">
+                we found <em>{{ results.length }}</em> definitions for <i>{{ searchTerm }}</i>.
+            </div>
         </div>
-
+        <ol>
+            <li ng-repeat="def in results">
+                <a href="{{ url(def) }}">{{ def.title }}</a> <small>({{ def.sub_type }})</small>
+                is a {{ def.type }} that means <i>{{ def.translation.practical.eng }}</i>
+                in <a href="#/{{ def.mainLanguage.code }}">{{ def.mainLanguage.name }}</a>
+            </li>
+        </ol>
         <div class="row">
-            We have 0 {{ language.name }} words in our database.
+            <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
+                {{ result }}
+            </div>
+        </div>
+    </div>
+
+    <!-- No results found -->
+    <div ng-show="results.length === 0 && !isSearching" class="text-center">
+        <br>
+        no results found <span class="fa fa-frown-o"></span>
+    </div>
+
+    <!-- Language details -->
+    <br>
+    <div ng-show="language">
+        <h3>A Little Background on {{ language.name }}...</h3>
+
+        <div class="meta">
+            <div ng-show="language.altNames.length" class="row">
+                It is also refered to as: {{ language.altNames }}
+            </div>
+
+            <div class="row">
+                We have {{ language.count }} {{ language.name }} words in our database.
+            </div>
+
+            <div ng-show="language.parentName.length" class="row">
+                It is a child language of {{ language.parentName }}.
+            </div>
         </div>
     </div>
 </div>

@@ -32,8 +32,10 @@
 <!-- Search results placeholder -->
 <div ng-hide="results.length > 0 || isSearching" class="row">
     <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
-        Use this <em>&#10548;</em> to lookup {{ searchTerm || 'words' }} in another language.
-    </div
+        Use this <em>&#10548;</em> to lookup {{ searchTerm || 'words' }}
+        in {{ language.name || 'another language' }}.
+    </div>
+</div>
 
 <!-- Loading search results -->
 <div ng-show="isSearching" class="text-center">
@@ -58,6 +60,21 @@
     <div class="row">
         <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
             {{ result }}
+        </div>
+    </div>
+</div>
+
+<!-- Language details -->
+<div ng-show="language">
+    <h3>A Little Background on {{ language.name }}...</h3>
+
+    <div class="meta">
+        <div class="row">
+            It is also refered to as: {{ language.alt_names }}
+        </div>
+
+        <div class="row">
+            We have 0 {{ language.name }} words in our database.
         </div>
     </div>
 </div>

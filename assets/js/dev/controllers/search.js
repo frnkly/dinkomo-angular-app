@@ -3,8 +3,11 @@
  */
 angular.module('nkomo.controllers')
 
-.controller('SearchController', ['$scope', '$routeParams', '$sessionStorage', 'DefinitionFactory', 'Rover',
-    function($scope, $routeParams, $sessionStorage, DefinitionFactory, Rover) {
+.controller('SearchController', [
+    '$scope', '$routeParams', '$sessionStorage',
+    'LanguageFactory', 'DefinitionFactory', 'Rover',
+
+    function($scope, $routeParams, $sessionStorage, LanguageFactory, DefinitionFactory, Rover) {
 
         Rover.debug('SearchController');
 

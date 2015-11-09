@@ -24,6 +24,16 @@ footer > div {
 footer .credits {
 
 }
+footer .credits .ghana {
+    position: relative;
+    margin: 0 10px;
+    top: 8px;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background: transparent center center no-repeat url('/assets/flag-of-ghana.png');
+    background-size: contain;
+}
 footer .credits a {
 
 }

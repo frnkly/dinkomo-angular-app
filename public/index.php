@@ -8,7 +8,7 @@ require '../lib/asset.php';
 <html lang="en" data-ng-app="learn">
 <head>
     <meta charset="utf-8">
-    <title>Di Nkomo Learning App</title>
+    <title>A Collection of Cultures - Di Nkɔmɔ</title>
     <link rel="stylesheet" href="<?= Asset::rev('learn.css') ?>">
 </head>
 <body>

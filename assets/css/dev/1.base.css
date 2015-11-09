@@ -57,13 +57,18 @@ em {
 	font-size: 1.2em;
 }
 h1 {
-	margin: 2px auto 5px;
-	font-size: 1.5em;
+    margin: 5px auto 30px;
+    width: 100%;
+    font-size: 1.3em;
 	font-weight: normal;
 	text-align: center;
 }
 h1 em {
     letter-spacing: 5px;
+}
+h1 small {
+    font-size: 0.7em;
+    letter-spacing: 2.5px;
 }
 h2 {
 	margin: 5px auto;
@@ -89,14 +94,8 @@ small {
 	font-size: 0.5em;
 }
 
-.left {
-    text-align: left;
-}
-.right {
-    text-align: right;
-}
-.center {
-	text-align: center;
+.meta {
+    font-size: .8em;
 }
 .clr {
 	clear: both;

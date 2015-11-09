@@ -1,12 +1,11 @@
 
-<!-- Title -->
-<div class="title">
+<h1>
     <span ng-hide="language">Di Nkɔmɔ</span>
     <span ng-show="language">{{ language.name }}</span>
 
     <br>
     <small>A Collection Of Cultures</small>
-</div>
+</h1>
 
 <!-- Shows loading animation while language is being fetched -->
 <div ng-show="language === null" class="text-center">
@@ -59,17 +58,29 @@
             </div>
         </div>
         <ol>
-            <li ng-repeat="def in results">
-                <a href="{{ url(def) }}">{{ def.title }}</a> <small>({{ def.sub_type }})</small>
-                is a {{ def.type }} that means <i>{{ def.translation.practical.eng }}</i>
-                in <a href="#/{{ def.mainLanguage.code }}">{{ def.mainLanguage.name }}</a>
+            <li data-ng-repeat="result in results">
+
+                <!-- Definitions -->
+                <span ng-show="result.resourceType == 'definition'">
+                    <a href="{{ url(result) }}">{{ result.title }}</a> <small>({{ result.subType }})</small>
+                    is a {{ result.type }} that means <i>{{ result.translation.practical.eng }}</i>
+                    in <a href="#/{{ result.mainLanguage.code }}">{{ result.mainLanguage.name }}</a>
+                </span>
+
+                <!-- Languages -->
+                <span ng-show="result.resourceType == 'language'">
+                    <a href="#/{{ result.code }}">{{ result.name }}</a> <small>(language)</small>
+
+                    <!-- Parent details -->
+                    <span data-ng-show="result.parentLanguage">
+                        is a child language of
+                        <a href="#/{{ result.parentLanguage.code }}">
+                            {{ result.parentLanguage.name }}
+                        </a>
+                    </span>
+                </span>
             </li>
         </ol>
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
-                {{ result }}
-            </div>
-        </div>
     </div>
 
     <!-- No results found -->
@@ -80,20 +91,56 @@
 
     <!-- Language details -->
     <br>
+    <br>
     <div ng-show="language">
         <h3>A Little Background on {{ language.name }}...</h3>
+        <br>
 
-        <div class="meta">
-            <div ng-show="language.altNames.length" class="row">
-                It is also refered to as: {{ language.altNames }}
+        <div class="row">
+            <div class="col-sm-12 col-md-6 meta">
+                Lorem ipsum...
             </div>
 
-            <div class="row">
-                We have {{ language.count }} {{ language.name }} words in our database.
-            </div>
+            <div class="col-sm-12 col-md-6 meta">
+                <ul class="fa-ul">
+                    <li ng-show="language.altNames.length">
+                        <i class="fa-li fa fa-asterisk"></i>
+                        Also refered to as: {{ language.altNames }}
+                    </li>
+                    <li ng-show="language.parentLanguage">
+                        <i class="fa-li fa fa-asterisk"></i>
+                        Is a child language of
+                        <a href="#/{{ language.parentLanguage.code }}">
+                            {{ language.parentLanguage.name }}
+                        </a>.
+                    </li>
+                    <li>
+                        <i class="fa-li fa fa-asterisk"></i>
+                        We have {{ language.count }} {{ language.name }} words in our database.
+                    </li>
+                    <li ng-show="language.count > 0">
+                        <i class="fa-li fa fa-asterisk"></i>
+                        The first word was
+                        <a href="{{ url(language.firstDefinition) }}">
+                            {{ language.firstDefinition.title }}
+                        </a>
 
-            <div ng-show="language.parentName.length" class="row">
-                It is a child language of {{ language.parentName }}.
+                        <span ng-show="language.count > 1">
+                            , and the latest word is
+                            <a href="{{ url(language.latestDefinition) }}">
+                                {{ language.latestDefinition.title }}
+                            </a>
+                        </span>.
+                    </li>
+                    <li ng-show="language.count > 2">
+                        <i class="fa-li fa fa-asterisk"></i>
+                        <a href="{{ url(language.randomDefinition) }}">
+                            {{ language.randomDefinition.title }}
+                        </a>
+
+                        is a random word in {{ language.name }}.
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

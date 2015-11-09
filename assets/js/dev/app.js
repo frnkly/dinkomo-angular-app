@@ -50,6 +50,12 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
             controller: 'PageController'
 		})
 
+        // Settings page.
+        .when('/config', {
+			templateUrl: '/views/config.html?' + assetVersion,
+            controller: 'ConfigController'
+		})
+
         // Stats page.
         .when('/stats', {
 			templateUrl: '/views/stats.html?' + assetVersion,

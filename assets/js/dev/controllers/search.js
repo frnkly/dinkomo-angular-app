@@ -5,9 +5,9 @@ angular.module('nkomo.controllers')
 
 .controller('SearchController', [
     '$scope', '$routeParams', '$sessionStorage',
-    'LanguageFactory', 'DefinitionFactory', 'Rover',
+    'LanguageFactory', 'DefinitionFactory', 'SearchFactory', 'Rover',
 
-    function($scope, $routeParams, $sessionStorage, LanguageFactory, DefinitionFactory, Rover) {
+    function($scope, $routeParams, $sessionStorage, LanguageFactory, DefinitionFactory, SearchFactory, Rover) {
 
         Rover.debug('SearchController');
 
@@ -42,9 +42,9 @@ angular.module('nkomo.controllers')
         // Search results.
         $scope.results = null;
 
-        // Looks up a word
-        $scope.lookup = function(searchTerm, langCode)
-        {
+        // Queries the database.
+        $scope.lookup = function(searchTerm, langCode) {
+
             // Default values.
             searchTerm = searchTerm || $scope.searchTerm;
             langCode = langCode || $scope.langCode;
@@ -54,13 +54,49 @@ angular.module('nkomo.controllers')
                 return;
             }
 
-            Rover.debug('Looking up "'+ searchTerm +'"...');
+            // Definition lookup.
+            if (langCode) {
+                $scope.lookupDefinition(searchTerm, langCode)
+            }
+
+            // General lookup.
+            else {
+                $scope.lookupAnything(searchTerm, langCode);
+            }
+        };
+        $scope.lookupDefinition = function(searchTerm, langCode) {
+
+            Rover.debug('Looking up definitions matching "'+ searchTerm +'"...');
 
             // Notify user that we're querying the API.
             $scope.results = [];
             $scope.isSearching = true;
 
             DefinitionFactory.search(searchTerm, 'word', langCode).then(
+
+                // On success.
+                function(response) {
+                    $scope.isSearching = false;
+                    $scope.results = response.data;
+                },
+
+                // On error.
+                function(response) {
+                    Rover.debug('Error');
+                    Rover.debug(response);
+                    $scope.isSearching = false;
+                }
+            );
+        };
+        $scope.lookupAnything = function(searchTerm, langCode) {
+
+            Rover.debug('Looking up anything matching "'+ searchTerm +'"...');
+
+            // Notify user that we're querying the API.
+            $scope.results = [];
+            $scope.isSearching = true;
+
+            SearchFactory.any(searchTerm).then(
 
                 // On success.
                 function(response) {

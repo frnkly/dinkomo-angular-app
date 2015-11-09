@@ -1,9 +1,0 @@
-
-header {
-    margin: 20px auto;
-    width: 100%;
-    display: block;
-    letter-spacing: 10px;
-    text-align: center;
-    color: #aaa;
-}

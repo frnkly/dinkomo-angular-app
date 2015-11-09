@@ -1,28 +1,24 @@
 footer  {
-	margin: 60px auto 20px;
-	color: #aaa;
-}
-footer a, footer a:visited {
-	color: #aaa;
+	margin: 40px auto 20px;
+    font-size: .5em;
 }
 footer a:after {
-	background-color: #aaa;
-}
-footer a.fa {
-	margin: 0 10px;
-}
-footer a.fa:hover {
-	color: #333;
-}
-
-footer > div {
-    width: 100%;
-	margin: 5px auto;
-	text-align: center;
+	visibility: hidden;
+	transform: scaleX(0);
 }
 
 footer .credits {
-
+    display: block;
+    width: 100%;
+	margin: 5px auto;
+	color: #ddd;
+	text-align: center;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    transition: color .3s;
+}
+footer .credits:hover {
+    color: #333;
 }
 footer .credits .ghana {
     position: relative;
@@ -33,12 +29,4 @@ footer .credits .ghana {
     width: 24px;
     background: transparent center center no-repeat url('/assets/flag-of-ghana.png');
     background-size: contain;
-}
-footer .credits a {
-
-}
-
-@media only screen and (max-width: 600px) {
-
-
 }

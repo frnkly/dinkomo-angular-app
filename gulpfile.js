@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     combine = require('gulp-concat'),
 
     minifyJS = require('gulp-uglify'),
+    jshint = require('gulp-jshint'),
 
     minifyCSS = require('gulp-minify-css'),
     stripCssComments = require('gulp-strip-css-comments'),
@@ -79,6 +80,7 @@ gulp.task('remove-js', function(done) {
 // Combines and minifies dev javascript files.
 gulp.task('minify-js', function() {
     return gulp.src(js.dev)
+        .pipe(jshint())
         .pipe(sourcemaps.init())
             .pipe(minifyJS())
             .pipe(combine('learn.js'))

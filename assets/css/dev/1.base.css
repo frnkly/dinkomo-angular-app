@@ -4,6 +4,10 @@ html, body, a, div, header, input, label, section {
     position: inherit;
 }
 
+html {
+    width: 100%;
+}
+
 body {
     position: relative;
 	color: #333;

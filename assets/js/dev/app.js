@@ -51,9 +51,15 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
 		})
 
         // Settings page.
-        .when('/config', {
-			templateUrl: '/views/config.html?' + assetVersion,
-            controller: 'ConfigController'
+        .when('/account', {
+			templateUrl: '/views/account.html?' + assetVersion,
+            controller: 'AccountController'
+		})
+
+        // Login form.
+        .when('/login', {
+			templateUrl: '/views/login.html?' + assetVersion,
+            controller: 'AccountController'
 		})
 
         // Stats page.

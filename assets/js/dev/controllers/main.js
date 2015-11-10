@@ -14,8 +14,8 @@ angular.module('nkomo.controllers')
 
         // Toggles navigation links.
         $scope.toggleNav = function() {
-            Rover.debug('toggling nav');
-            $('aside .hidden-xs').show();
+            // $('aside .toggles').toggleClass('hidden-xs');
+            $('aside .toggles').toggleClass('hidden-xs');
         };
 
     }

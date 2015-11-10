@@ -56,7 +56,7 @@ angular.module('nkomo.controllers')
 
             // Definition lookup.
             if (langCode) {
-                $scope.lookupDefinition(searchTerm, langCode)
+                $scope.lookupDefinition(searchTerm, langCode);
             }
 
             // General lookup.

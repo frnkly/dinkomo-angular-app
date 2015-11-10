@@ -77,10 +77,17 @@ gulp.task('remove-js', function(done) {
     done();
 });
 
-// Combines and minifies dev javascript files.
-gulp.task('minify-js', function() {
+// Checks javascript files for syntax errors.
+gulp.task('lint-js', function() {
     return gulp.src(js.dev)
         .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jshint.reporter('fail'));
+});
+
+// Combines and minifies dev javascript files.
+gulp.task('minify-js', ['lint-js'], function() {
+    return gulp.src(js.dev)
         .pipe(sourcemaps.init())
             .pipe(minifyJS())
             .pipe(combine('learn.js'))

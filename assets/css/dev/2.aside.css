@@ -1,8 +1,9 @@
 
 aside {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
 }
 
 aside a, aside a:visited {
@@ -12,7 +13,7 @@ aside a:after {
     background-color: #aaa;
 }
 aside a.fa {
-    margin: 0 10px;
+    margin: 10px 0;
 }
 aside a.fa:hover {
     color: #333;
@@ -20,6 +21,10 @@ aside a.fa:hover {
 
 @media only screen and (min-width: 768px) {
 
+    aside {
+        top: 20px;
+        left: 20px;
+    }
 }
 
 @media only screen and (min-width: 992px) {

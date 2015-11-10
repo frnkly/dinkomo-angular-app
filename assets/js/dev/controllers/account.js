@@ -7,8 +7,8 @@ angular.module('nkomo.controllers')
     function($scope, AccountService) {
 
         // Check that user is signed in.
-        if (!Account.hasToken()) {
-            return Account.setCredentials();
+        if (!AccountService.hasToken()) {
+            return AccountService.setCredentials();
         }
     }
 ]);

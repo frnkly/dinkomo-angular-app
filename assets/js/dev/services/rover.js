@@ -19,6 +19,5 @@ angular.module('nkomo.rover', [])
                 console.log(msg);
             }
         };
-
     }
 ]);

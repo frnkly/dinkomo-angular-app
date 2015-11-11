@@ -2,16 +2,16 @@
 <h1>Sign in</h1>
 
 <div class="text-center">
-    <a href="" class="fa fa-lg fa-twitter-square"></a>
-    <a href="" class="fa fa-lg fa-facebook-square"></a>
-    <a href="" class="fa fa-lg fa-google-plus-square"></a>
-    <a href="" class="fa fa-lg fa-reddit-square"></a>
+    <a href="{{ twitterAuth }}" class="fa fa-lg fa-twitter"></a>
+    <a href="{{ facebookAuth }}" class="fa fa-lg fa-facebook"></a>
+    <a href="{{ linkedinAuth }}" class="fa fa-lg fa-linkedin"></a>
+    <a href="{{ googleAuth }}" class="fa fa-lg fa-google"></a>
 </div>
 
 <br>
 <div class="text-center">~ or ~</div>
 
-<form class="form edit" name="login" method="post" action="">
+<form class="form edit" name="login" ng-submit="">
     <input type="hidden" name="" value="">
 
 	<!-- Email -->

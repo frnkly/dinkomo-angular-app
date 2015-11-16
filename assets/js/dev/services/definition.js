@@ -3,7 +3,7 @@
  */
 angular.module('nkomo.services')
 
-.factory('DefinitionFactory', ['$http', 'apiEndpoint',
+.factory('DefinitionService', ['$http', 'apiEndpoint',
     function($http, apiEndpoint) {
 
         return {

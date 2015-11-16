@@ -3,7 +3,7 @@
  */
 angular.module('nkomo.services')
 
-.factory('LanguageFactory', ['$http', 'apiEndpoint',
+.factory('LanguageService', ['$http', 'apiEndpoint',
     function($http, apiEndpoint) {
 
         return {

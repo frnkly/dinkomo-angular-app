@@ -1,0 +1,52 @@
+
+<h1>
+    Add a word <span ng-show="language">in <br><em>{{ language.name }}</em></span>
+    <br>
+
+    <small>
+        <a href="#/dict" class="meta">
+            &rarr; or select another language
+        </a>
+    </small>
+</h1>
+<br>
+
+<!-- New word form -->
+<form ng-show="language" class="form edit form-inline text-center">
+
+    <div class="line">
+        <input type="text" placeholder="your word" autofocus required> is a
+        <select required>
+            <option value="adj">adjective</option>
+            <option value="adv">adverb</option>
+            <option value="conn">connective</option>
+            <option value="ex">exclamation</option>
+            <option value="pre">preposition</option>
+            <option value="pro">pronoun</option>
+            <option value="n">noun</option>
+            <option value="v">verb</option>
+        </select>
+    </div>
+
+    <div class="line">
+        in <em>{{ language.name }}</em> that means
+    </div>
+
+    <div class="line">
+        <input type="text" placeholder="your translation" required>
+    </div>
+
+    <div class="line">
+        <input type="submit" value="save">
+    </div>
+</form>
+
+<!-- Loading -->
+<div ng-show="language === null" class="text-center">
+    <i class="fa fa-spinner fa-spin"></i>
+</div>
+
+<!-- Language not found -->
+<div ng-show="language === false">
+    404
+</div>

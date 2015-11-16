@@ -5,9 +5,9 @@ angular.module('nkomo.controllers')
 
 .controller('SearchController', [
     '$scope', '$routeParams', '$sessionStorage',
-    'LanguageFactory', 'DefinitionFactory', 'SearchFactory', 'Rover',
+    'LanguageService', 'DefinitionService', 'SearchFactory', 'Rover',
 
-    function($scope, $routeParams, $sessionStorage, LanguageFactory, DefinitionFactory, SearchFactory, Rover) {
+    function($scope, $routeParams, $sessionStorage, LanguageService, DefinitionService, SearchFactory, Rover) {
 
         Rover.debug('SearchController');
 
@@ -23,7 +23,7 @@ angular.module('nkomo.controllers')
         {
             Rover.debug('Retrieving language with code "'+ $scope.langCode +'"...');
 
-            LanguageFactory.get($scope.langCode).then(
+            LanguageService.get($scope.langCode).then(
 
                 // On success.
                 function(response) {
@@ -72,7 +72,7 @@ angular.module('nkomo.controllers')
             $scope.results = [];
             $scope.isSearching = true;
 
-            DefinitionFactory.search(searchTerm, 'word', langCode).then(
+            DefinitionService.search(searchTerm, 'word', langCode).then(
 
                 // On success.
                 function(response) {

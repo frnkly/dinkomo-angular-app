@@ -1,5 +1,7 @@
-
-.form input, .form textarea, .form select {
+/**
+ * General form styles.
+ */
+form input, form textarea, form select {
 	border: none;
 	background-color: transparent;
 	font: normal 24px/1.618;
@@ -7,12 +9,43 @@
 	-moz-appearance: none;
 	appearance: none;
 }
-.form input:focus {
+form input:focus {
 	outline: none;
 	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
-.form input[type="button"], .form input[type="submit"] {
+form input[type="button"], form input[type="submit"] {
     cursor: pointer;
+}
+form select,
+form textarea,
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    height: 40px;
+    font-size: 1.1em;
+    color: #000;
+    border-bottom: 2px solid #bbb;
+}
+form select:focus,
+form textarea:focus,
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+	outline: none;
+	border-bottom-color: #333;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+/**
+ * Forms with inline elements.
+ */
+.form-inline .line {
+    margin: 0 0 25px;
+    width: 100%;
+}
+.form-inline .line select,
+.form-inline .line input[type="text"] {
+    text-align: center;
 }
 
 /*
@@ -22,7 +55,7 @@
 	position: relative;
 	margin: 5px auto;
 	width: 100%;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 2px solid #bbb;
 }
 .form.search .wrapper input {
 	float: left;
@@ -45,6 +78,7 @@
 .form.search .wrapper input[name="q"] {
 	width: 454px;
 	text-align: center;
+    border: none;
 }
 
 #results {
@@ -75,12 +109,6 @@
 .form.edit .row textarea,
 .form.edit .row select {
 	width: 100%;
-	font-size: 1.1em;
-    color: #000;
-	border-bottom: 2px solid #bbb;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
 }
 .form.edit .row input[type="text"],
 .form.edit .row input[type="email"],
@@ -90,15 +118,6 @@
 }
 .form.edit .row textarea {
 	height: 200px;
-}
-.form.edit input[type="text"]:focus,
-.form.edit input[type="email"]:focus,
-.form.edit input[type="password"]:focus,
-.form.edit .row textarea:focus,
-.form.edit .row select:focus {
-	outline: none;
-	border-bottom-color: #333;
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 .form.edit .row input.loading {
     color: #999;

@@ -16,7 +16,7 @@
 
     <div class="definitions">
         <div ng-repeat="def in definitions" class="definition">
-            <span ng-hide="def.uniqueId === definitions[0].uniqueId" class="or">or</span>
+            <span ng-hide="$index === 0" class="or">or</span>
 
             <h3>
                 <span class="edit-res">

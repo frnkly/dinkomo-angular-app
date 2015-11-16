@@ -5,14 +5,14 @@ angular.module('nkomo.controllers')
 
 .controller('DefinitionController', [
     '$scope', '$routeParams', '$sessionStorage',
-    'LanguageFactory', 'DefinitionFactory', 'Rover',
+    'LanguageService', 'DefinitionService', 'Rover',
 
-    function($scope, $routeParams, $sessionStorage, LanguageFactory, DefinitionFactory, Rover) {
+    function($scope, $routeParams, $sessionStorage, LanguageService, DefinitionService, Rover) {
 
         Rover.debug('DefinitionController');
 
         // Search parameters.
-        $scope.searchTerm = $routeParams.searchTerm.replace('_', ' ');
+        $scope.searchTerm = $routeParams.searchTerm ? $routeParams.searchTerm.replace('_', ' ') : false;
         $scope.langCode = $routeParams.langCode;
 
         // Language data.
@@ -22,16 +22,14 @@ angular.module('nkomo.controllers')
         {
             Rover.debug('Retrieving language with code "'+ $scope.langCode +'"...');
 
-            LanguageFactory.get($scope.langCode).then(
+            LanguageService.get($scope.langCode).then(
 
-                // On success.
+                // On success: Save the languge object in the $scope and the $sessionStorage.
                 function(response) {
-
-                    // Save the languge object in the $scope and the $sessionStorage.
                     $scope.language = $sessionStorage.languages[$routeParams.langCode] = response.data;
                 },
 
-                // On error.
+                // On error...
                 function(response) {
                     Rover.debug('Could not retrieve language data.');
                 }
@@ -39,26 +37,29 @@ angular.module('nkomo.controllers')
         }
 
         // Definition list.
-        $scope.definitions = $sessionStorage.definitions[$routeParams.searchTerm] || null;
-
-        if (!$scope.definitions)
+        if ($scope.searchTerm)
         {
-            Rover.debug('Retrieving definitions for "'+ $scope.searchTerm +'"...');
+            $scope.definitions = $sessionStorage.definitions[$routeParams.searchTerm] || null;
 
-            DefinitionFactory.search($scope.searchTerm, 'word', $scope.langCode).then(
+            if (!$scope.definitions)
+            {
+                Rover.debug('Retrieving definitions for "'+ $scope.searchTerm +'"...');
 
-                // On success.
-                function(response) {
+                DefinitionService.search($scope.searchTerm, 'word', $scope.langCode).then(
 
-                    // Save the definition list locally and in the sessionStorage.
-                    $scope.definitions = $sessionStorage.definitions[$routeParams.searchTerm] = response.data;
-                },
+                    // On success.
+                    function(response) {
 
-                // On error.
-                function(response) {
-                    Rover.debug('Could not retrieve definitions.');
-                }
-            );
+                        // Save the definition list locally and in the sessionStorage.
+                        $scope.definitions = $sessionStorage.definitions[$routeParams.searchTerm] = response.data;
+                    },
+
+                    // On error.
+                    function(response) {
+                        Rover.debug('Could not retrieve definitions.');
+                    }
+                );
+            }
         }
     }
 ]);

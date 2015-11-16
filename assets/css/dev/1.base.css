@@ -100,6 +100,7 @@ small {
 
 .meta {
     font-size: .8em;
+    letter-spacing: normal;
 }
 .clr {
 	clear: both;

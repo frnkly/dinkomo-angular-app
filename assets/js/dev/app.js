@@ -87,6 +87,10 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
 			templateUrl: '/views/poem.html?' + assetVersion,
             controller: 'DefinitionController'
         })
+        .when('/:langCode/add/word', {
+			templateUrl: '/views/forms/add-word.html?' + assetVersion,
+            controller: 'DefinitionController'
+        })
 
         // Else, redirect to search page.
         .otherwise({

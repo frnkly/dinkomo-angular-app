@@ -45,7 +45,8 @@ angular.module('nkomo.controllers')
             {
                 Rover.debug('Retrieving definitions for "'+ $scope.searchTerm +'"...');
 
-                DefinitionService.search($scope.searchTerm, 'word', $scope.langCode).then(
+                // DefinitionService.search($scope.searchTerm, 'word', $scope.langCode).then(
+                DefinitionService.get($scope.searchTerm).then(
 
                     // On success.
                     function(response) {

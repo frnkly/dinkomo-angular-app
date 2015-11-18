@@ -35,16 +35,7 @@ angular.module('nkomo.services')
     		},
 
             create: function(definition) {
-                // return $http.post(apiEndpoint + '/definition', definition);
-                
-                return $http({
-                    method: 'POST',
-                    url: apiEndpoint + '/definition',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        data: $.param(definition)
-                    }
-                });
+                return $http.post(apiEndpoint + '/definition', definition);
             },
 
             update: function(definition) {

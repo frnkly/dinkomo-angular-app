@@ -11,13 +11,13 @@ var nkomoLearningApp = angular.module('learn', [
 // App constants.
 //
 
-var _appVersion = '0.0.2';
+var _appVersion = '0.1.0';
 var _isLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
         window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 var _assetVersion = _isLocal ? Date.now() : _appVersion;
-var _apiEndpoint = _isLocal ? 'http://api.dinkomo.vagrant/v0.1' : 'http://dinkomo-api.frnk.ca/v0.1';
+var _apiEndpoint = _isLocal ? 'http://api.dinkomo.vagrant/0.1' : 'http://dinkomo-api.frnk.ca/0.1';
 
 nkomoLearningApp.constant('appVersion', _appVersion)
                 .constant('isLocalEnvironment', _isLocal)

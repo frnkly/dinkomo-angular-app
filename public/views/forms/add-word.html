@@ -12,19 +12,19 @@
 <br>
 
 <!-- New word form -->
-<form ng-show="language" class="form edit form-inline text-center">
+<form ng-show="language" ng-submit="saveDefinition()" class="form edit form-inline text-center">
 
     <div class="line">
-        <input type="text" placeholder="your word" autofocus required> is a
-        <select required>
-            <option value="adj">adjective</option>
-            <option value="adv">adverb</option>
-            <option value="conn">connective</option>
-            <option value="ex">exclamation</option>
-            <option value="pre">preposition</option>
-            <option value="pro">pronoun</option>
-            <option value="n">noun</option>
-            <option value="v">verb</option>
+        <input ng-model="definitionForm.title" type="text" placeholder="your word" autofocus required> is a
+        <select ng-model="definitionForm.subType" required>
+            <option ng-selected="definitionForm.subType == 'adj'" value="adj">adjective</option>
+            <option ng-selected="definitionForm.subType == 'adv'" value="adv">adverb</option>
+            <option ng-selected="definitionForm.subType == 'conn'" value="conn">connective</option>
+            <option ng-selected="definitionForm.subType == 'ex'" value="ex">exclamation</option>
+            <option ng-selected="definitionForm.subType == 'pre'" value="pre">preposition</option>
+            <option ng-selected="definitionForm.subType == 'pro'" value="pro">pronoun</option>
+            <option ng-selected="definitionForm.subType == 'n'" value="n">noun</option>
+            <option ng-selected="definitionForm.subType == 'v'" value="v">verb</option>
         </select>
     </div>
 
@@ -33,7 +33,7 @@
     </div>
 
     <div class="line">
-        <input type="text" placeholder="your translation" required>
+        <input ng-model="definitionForm.translations.eng.practical" type="text" placeholder="your translation" required>
     </div>
 
     <div class="line">

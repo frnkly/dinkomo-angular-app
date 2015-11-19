@@ -33,4 +33,5 @@ footer .credits .ghana {
     width: 24px;
     background: transparent center center no-repeat url('/assets/flag-of-ghana.png');
     background-size: contain;
+    border-radius: 10px;
 }

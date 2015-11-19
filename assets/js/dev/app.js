@@ -11,7 +11,7 @@ var nkomoLearningApp = angular.module('learn', [
 // App constants.
 //
 
-var _appVersion = '0.1.0';
+var _appVersion = '0.1.1';
 var _isLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -81,15 +81,19 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
         // Dictionary pages.
         .when('/:langCode/define/:searchTerm', {
 			templateUrl: '/views/definition.html?' + assetVersion,
-            controller: 'DefinitionController'
+            controller: 'ViewDefinitionController'
         })
         .when('/:langCode/poem/:searchTerm', {
 			templateUrl: '/views/poem.html?' + assetVersion,
-            controller: 'DefinitionController'
+            controller: 'ViewDefinitionController'
         })
         .when('/:langCode/add/word', {
 			templateUrl: '/views/forms/add-word.html?' + assetVersion,
-            controller: 'DefinitionController'
+            controller: 'EditDefinitionController'
+        })
+        .when('/edit/definition/:definitionId', {
+			templateUrl: '/views/forms/add-word.html?' + assetVersion,
+            controller: 'EditDefinitionController'
         })
 
         // Else, redirect to search page.
@@ -104,6 +108,16 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
     function ($rootScope, $location, Rover) {
 
         Rover.debug('Running app...');
+
+        $(document).ready(function() {
+
+            Rover.debug('Document ready.');
+
+            // Navigation tooltips.
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        });
 
     }
 ]);

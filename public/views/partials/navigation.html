@@ -7,12 +7,20 @@
     </li>
 
     <!-- Main dictionary page -->
-    <li class="fa-li hidden-xs toggles">
+    <li
+        class="fa-li hidden-xs toggles"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Lookup something">
         <a href="#/dict" class="fa fa-search"></a>
     </li>
 
     <!-- About -->
-    <li class="fa-li hidden-xs toggles">
+    <li
+        class="fa-li hidden-xs toggles"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="About this app">
         <a href="#/about" class="fa fa-info"></a>
     </li>
 
@@ -22,12 +30,30 @@
     </li> -->
 
     <!-- Account details -->
-    <li class="fa-li hidden-xs toggles">
+    <li
+        class="fa-li hidden-xs toggles"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Settings">
         <a href="#/account" class="fa fa-cogs"></a>
     </li>
 
+    <!-- Log out -->
+    <li
+        ng-show="hasToken"
+        class="fa-li hidden-xs toggles"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Sign out">
+        <a href="#/logout" class="fa fa-signout"></a>
+    </li>
+
     <!-- Github -->
-    <li class="fa-li hidden-xs toggles">
+    <li
+        class="fa-li hidden-xs toggles"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Source code">
         <a href="https://github.com/frnkly/dinkomo-angular-app" target="_blank" class="fa fa-github"></a>
     </li>
 </ul>

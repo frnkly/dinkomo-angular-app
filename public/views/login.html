@@ -11,17 +11,17 @@
 <br>
 <div class="text-center">~ or ~</div>
 
-<form class="form edit" name="login" ng-submit="">
+<form class="form edit" ng-submit="login()">
     <input type="hidden" name="" value="">
 
 	<!-- Email -->
 	<div class="row">
-		<input type="email" name="email" placeholder="your email" required autofocus>
+		<input ng-model="email" type="email" placeholder="your email" required autofocus>
 	</div>
 
 	<!-- Password -->
 	<div class="row">
-		<input type="password" name="password" placeholder="your password" required>
+		<input ng-model="password" type="password" placeholder="your password" required>
 	</div>
 
 	<!-- Submit -->

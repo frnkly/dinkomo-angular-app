@@ -3,8 +3,8 @@
  */
 angular.module('nkomo.services')
 
-.service('AccountService', ['$location', 'Rover', 'apiEndpoint',
-    function($location, Rover, apiEndpoint) {
+.service('AccountService', ['$location', '$http', 'Rover', 'apiEndpoint',
+    function($location, $http, Rover, apiEndpoint) {
 
         // Test...
         this.token = false;
@@ -18,13 +18,51 @@ angular.module('nkomo.services')
             twitter: apiEndpoint + '/auth/twitter'
         };
 
+        // Authenticates user.
+        // TODO: how do we include a minimum layer of security? https?
+        this.authenticate = function(email, password, callback) {
+            $http.post(this.authURIs.local, {email: email, password: password}).then(
+
+                // If user was successfully authenticated, return token to callback function.
+                function(response) {
+
+                    // Store token for future use.
+                    this.token = response.data.token;
+
+                    // If we don't have a callback function, assume we want to redirect
+                    // user to return path.
+                    if (typeof callback != 'function') {
+                        return $location.path(this.returnPath);
+                    }
+
+                    // Send token to callback function, and redirect user if callback returns true.
+                    if (callback.call(response.data.token)) {
+                        $location.path(this.returnPath);
+                    }
+                }.bind(this),
+
+                function(response) {
+                    if (typeof callback == 'function') {
+                        callback.call(null);
+                    }
+                }
+            );
+        };
+
         this.hasToken = function() {
-            return false;
+            return this.isAuthenticated();
+        };
+
+        this.isAuthenticated = function() {
+            return this.token && this.token.length > 0;
         };
 
         // Redirects user to login form.
-        this.setCredentials = function() {
+        this.setCredentials = function(returnTo) {
             $location.path('/login');
+
+            // Set return path.
+            this.returnPath = returnTo || '/';
         };
     }
 ]);

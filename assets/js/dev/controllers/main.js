@@ -3,8 +3,8 @@
  */
 angular.module('nkomo.controllers')
 
-.controller('MainController', ['$scope', '$sessionStorage', '$localStorage', 'Rover', 'assetVersion',
-    function($scope, $sessionStorage, $localStorage, Rover, assetVersion) {
+.controller('MainController', ['$scope', '$sessionStorage', '$localStorage', 'AccountService', 'Rover', 'assetVersion',
+    function($scope, $sessionStorage, $localStorage, AccountService, Rover, assetVersion) {
 
         $scope.assetVersion = assetVersion;
 
@@ -18,5 +18,7 @@ angular.module('nkomo.controllers')
             $('aside .toggles').toggleClass('hidden-xs');
         };
 
+        //
+        $scope.hasToken = AccountService.hasToken();
     }
 ]);

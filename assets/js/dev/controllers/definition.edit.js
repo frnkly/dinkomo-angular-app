@@ -3,19 +3,25 @@
  */
 angular.module('nkomo.controllers')
 
-.controller('DefinitionController', [
+.controller('EditDefinitionController', [
     '$scope', '$routeParams', '$sessionStorage', '$location',
-    'LanguageService', 'DefinitionService', 'Rover',
+    'AccountService', 'DefinitionService', 'LanguageService', 'Rover',
 
-    function($scope, $routeParams, $sessionStorage, $location, LanguageService, DefinitionService, Rover) {
+    function($scope, $routeParams, $sessionStorage, $location,
+        AccountService, DefinitionService, LanguageService, Rover) {
 
-        Rover.debug('DefinitionController');
+        Rover.debug('EditDefinitionController');
 
-        // Search parameters.
-        $scope.searchTerm = $routeParams.searchTerm ? $routeParams.searchTerm.replace('_', ' ') : false;
-        $scope.langCode = $routeParams.langCode;
-
+        // Make sure user is authenticated.
+        if (!AccountService.isAuthenticated()) {
+            return AccountService.setCredentials($location.path());
+        }
+        
+        //
         // Language data.
+        //
+
+        $scope.langCode = $routeParams.langCode;
         $scope.language = $sessionStorage.languages[$routeParams.langCode] || null;
 
         if (!$scope.language)
@@ -24,43 +30,14 @@ angular.module('nkomo.controllers')
 
             LanguageService.get($scope.langCode).then(
 
-                // On success: Save the languge object in the $scope and the $sessionStorage.
+                // Save languge object in $scope and $sessionStorage.
                 function(response) {
                     $scope.language = $sessionStorage.languages[$routeParams.langCode] = response.data;
                 },
-
-                // On error...
                 function(response) {
-                    Rover.debug('Could not retrieve language data.');
+                    Rover.debug('Could not retrieve language data: ' + response.responseText);
                 }
             );
-        }
-
-        // Definition list.
-        if ($scope.searchTerm)
-        {
-            $scope.definitions = $sessionStorage.definitions[$routeParams.searchTerm] || null;
-
-            if (!$scope.definitions)
-            {
-                Rover.debug('Retrieving definitions for "'+ $scope.searchTerm +'"...');
-
-                DefinitionService.search($scope.searchTerm, 'word', $scope.langCode).then(
-                // DefinitionService.get($scope.searchTerm).then(
-
-                    // On success.
-                    function(response) {
-
-                        // Save the definition list locally and in the sessionStorage.
-                        $scope.definitions = $sessionStorage.definitions[$routeParams.searchTerm] = response.data;
-                    },
-
-                    // On error.
-                    function(response) {
-                        Rover.debug('Could not retrieve definitions.');
-                    }
-                );
-            }
         }
 
         // Saves a new or existing definition.

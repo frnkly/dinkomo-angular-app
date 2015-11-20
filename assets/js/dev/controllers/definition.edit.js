@@ -16,26 +16,26 @@ angular.module('nkomo.controllers')
         if (!AccountService.isAuthenticated()) {
             return AccountService.setCredentials($location.path());
         }
-        
+
         //
         // Language data.
         //
 
-        $scope.langCode = $routeParams.langCode;
-        $scope.language = $sessionStorage.languages[$routeParams.langCode] || null;
+        $scope.definitionId = $routeParams.definitionId;
+        $scope.definition = $sessionStorage.definitions[$routeParams.definitionId] || null;
 
-        if (!$scope.language)
+        if (!$scope.definition)
         {
-            Rover.debug('Retrieving language with code "'+ $scope.langCode +'"...');
+            Rover.debug('Retrieving definition # "'+ $scope.definitionId +'"...');
 
-            LanguageService.get($scope.langCode).then(
+            DefinitionService.get($scope.definitionId).then(
 
-                // Save languge object in $scope and $sessionStorage.
+                // Save definition object in $scope and $sessionStorage.
                 function(response) {
-                    $scope.language = $sessionStorage.languages[$routeParams.langCode] = response.data;
+                    $scope.definition = $sessionStorage.definitions[$routeParams.definitionId] = response.data;
                 },
                 function(response) {
-                    Rover.debug('Could not retrieve language data: ' + response.responseText);
+                    Rover.debug('Could not retrieve definition data: ' + response.responseText);
                 }
             );
         }

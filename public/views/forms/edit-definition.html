@@ -12,33 +12,13 @@
 <br>
 
 <!-- Edit form -->
-<form ng-show="definition" ng-submit="saveDefinition()" class="form edit form-inline text-center">
+<form ng-show="definition" ng-submit="saveDefinition()" class="form edit text-center">
 
-    <div class="line">
-        <input ng-model="definitionForm.title" type="text" placeholder="your word" autofocus required> is a
-        <select ng-model="definitionForm.subType" required>
-            <option ng-selected="definitionForm.subType == 'adj'" value="adj">adjective</option>
-            <option ng-selected="definitionForm.subType == 'adv'" value="adv">adverb</option>
-            <option ng-selected="definitionForm.subType == 'conn'" value="conn">connective</option>
-            <option ng-selected="definitionForm.subType == 'ex'" value="ex">exclamation</option>
-            <option ng-selected="definitionForm.subType == 'pre'" value="pre">preposition</option>
-            <option ng-selected="definitionForm.subType == 'pro'" value="pro">pronoun</option>
-            <option ng-selected="definitionForm.subType == 'n'" value="n">noun</option>
-            <option ng-selected="definitionForm.subType == 'v'" value="v">verb</option>
-        </select>
-    </div>
-
-    <div class="line">
-        in <em>{{ language.name }}</em> that means
-    </div>
-
-    <div class="line">
-        <input ng-model="definitionForm.translations.eng.practical" type="text" placeholder="your translation" required>
-    </div>
-
-    <div class="line">
-        <input type="submit" value="save">
-    </div>
+    <!-- Title -->
+    <div class="row">
+		<input type="text" name="title" class="text-input" placeholder="e.g. ɔdɔ" value="" />
+		<label for="title">Title</label>
+	</div>
 </form>
 
 <!-- Loading -->

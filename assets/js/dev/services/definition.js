@@ -15,8 +15,12 @@ angular.module('nkomo.services')
                 return $http.get(apiEndpoint + '/' + type + '/count');
             },
 
-            get: function(title) {
-                return $http.get(apiEndpoint + '/definition/exists/' + title);
+            get: function(id) {
+                return $http.get(apiEndpoint + '/definition/' + id);
+            },
+
+            match: function(title) {
+                return $http.get(apiEndpoint + '/definition/title/' + title);
             },
 
             search : function(term, definitionType, langCode, searchMethod) {

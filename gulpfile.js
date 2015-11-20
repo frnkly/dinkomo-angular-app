@@ -4,8 +4,9 @@ var gulp = require('gulp'),
     del = require('del'),
     combine = require('gulp-concat'),
 
-    minifyJS = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
+    minifyJS = require('gulp-uglify'),
+    templateCache = require('gulp-angular-templatecache'),
 
     minifyCSS = require('gulp-minify-css'),
     stripCssComments = require('gulp-strip-css-comments'),

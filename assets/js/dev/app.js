@@ -92,7 +92,7 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
             controller: 'EditDefinitionController'
         })
         .when('/edit/definition/:definitionId', {
-			templateUrl: '/views/forms/add-word.html?' + assetVersion,
+			templateUrl: '/views/forms/edit-definition.html?' + assetVersion,
             controller: 'EditDefinitionController'
         })
 

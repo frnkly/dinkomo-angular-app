@@ -3,11 +3,11 @@
  */
 angular.module('nkomo.services')
 
-.service('AccountService', ['$location', '$http', 'Rover', 'apiEndpoint',
-    function($location, $http, Rover, apiEndpoint) {
+.service('AccountService', ['$location', '$http', '$sessionStorage', 'Rover', 'apiEndpoint',
+    function($location, $http, $sessionStorage, Rover, apiEndpoint) {
 
-        // Test...
-        this.token = false;
+        // Uer data.
+        $sessionStorage.auth = $sessionStorage.auth || {token: false};
 
         // Authentication URIs.
         this.authURIs = {
@@ -27,7 +27,7 @@ angular.module('nkomo.services')
                 function(response) {
 
                     // Store token for future use.
-                    this.token = response.data.token;
+                    $sessionStorage.auth.token = response.data.token;
 
                     // If we don't have a callback function, assume we want to redirect
                     // user to return path.
@@ -54,7 +54,7 @@ angular.module('nkomo.services')
         };
 
         this.isAuthenticated = function() {
-            return this.token && this.token.length > 0;
+            return $sessionStorage.auth.token && $sessionStorage.auth.token.length > 0;
         };
 
         // Redirects user to login form.

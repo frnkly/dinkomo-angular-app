@@ -13,17 +13,18 @@ angular.module('nkomo.controllers')
         Rover.debug('EditDefinitionController');
 
         // Make sure user is authenticated.
-        if (!AccountService.isAuthenticated()) {
-            return AccountService.setCredentials($location.path());
-        }
-
-        //
-        // Language data.
-        //
+        // if (!AccountService.isAuthenticated()) {
+        //     return AccountService.setCredentials($location.path());
+        // }
 
         $scope.definitionId = $routeParams.definitionId;
         $scope.definition = $sessionStorage.definitions[$routeParams.definitionId] || null;
+        $scope.formData = $sessionStorage.definitionFormData || null;
 
+        // TODO: pull form data from API.
+        // ...
+
+        // Retrieve definition data.
         if (!$scope.definition)
         {
             Rover.debug('Retrieving definition # "'+ $scope.definitionId +'"...');
@@ -40,9 +41,14 @@ angular.module('nkomo.controllers')
             );
         }
 
-        // Saves a new or existing definition.
+        // Form data.
+
+
         $scope.definitionForm = {subType: 'n'};
-        $scope.saveDefinition = function() {
+
+
+        // Stores a new definition.
+        $scope.store = function() {
 
             Rover.debug('Saving definition...');
 

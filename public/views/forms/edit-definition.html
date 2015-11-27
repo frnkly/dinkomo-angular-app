@@ -16,8 +16,65 @@
 
     <!-- Title -->
     <div class="row">
-		<input type="text" name="title" class="text-input" placeholder="e.g. ɔdɔ" value="" />
+		<input ng-model="definition.title" name="title" type="text" class="text-input" placeholder="e.g. ɔdɔ">
 		<label for="title">Title</label>
+	</div>
+
+    <!-- Alternate spellings -->
+    <div class="row">
+		<input ng-model="definition.altTitles" name="alt_titles" type="text" class="text-input" placeholder="e.g. do, dɔ, odo">
+		<label for="alt_titles">Alternate titles or spellings (seperated by ",")</label>
+	</div>
+
+    <!-- Definition type -->
+    <div class="row">
+        <select ng-model=""></select>
+    </div>
+
+    <!-- Definition sub type -->
+    <div class="row">
+        <input type="text" placeholder="todo: type" disabled>
+		<label for="type">Word type</label>
+	</div>
+
+    <!-- Translation -->
+    <div class="row">
+        <input
+            ng-model="definition.translation.practical.eng"
+            type="text"
+            id="practicalTranslation"
+            class="en-text-input"
+            placeholder="e.g. love">
+        <label for="practicalTranslation">English translation</label>
+    </div>
+
+    <!-- Meaning -->
+    <div class="row">
+        <input
+            ng-model="definition.translation.meaning.eng"
+            type="text"
+            id="meaning"
+            class="en-text-input"
+            placeholder="e.g. an intense feeling of deep affection.">
+        <label for="meaning">English meaning</label>
+    </div>
+
+    <!-- Language -->
+    <div class="row">
+        <select id="languages" class="text-input remote" name="relations[language]">
+
+        </select>
+		<label for="languages">
+            Languages that use this word. Start typing and select a language from the list.
+            You can drag these around (the first will be considred the "main" language).
+        </label>
+	</div>
+
+    <!-- Form actions -->
+    <div class="row center">
+		<input type="submit" name="finish" value="done !" disabled>
+		<input type="submit" name="add" value="save + add" disabled>
+		<input type="button" name="cancel" value="cancel" onclick="return confirm('Cancel editing?') ? window.history.back() : false;" />
 	</div>
 </form>
 

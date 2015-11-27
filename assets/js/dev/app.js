@@ -78,7 +78,9 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
             controller: 'SearchController'
         })
 
+        //
         // Dictionary pages.
+        //
         .when('/:langCode/define/:searchTerm', {
 			templateUrl: '/views/definition.html?' + assetVersion,
             controller: 'ViewDefinitionController'
@@ -87,9 +89,9 @@ nkomoLearningApp.config(['$routeProvider', 'assetVersion',
 			templateUrl: '/views/poem.html?' + assetVersion,
             controller: 'ViewDefinitionController'
         })
-        .when('/:langCode/add/word', {
+        .when('/:langCode/%2Badd/:definitionType', {
 			templateUrl: '/views/forms/add-word.html?' + assetVersion,
-            controller: 'EditDefinitionController'
+            controller: 'AddDefinitionController'
         })
         .when('/edit/definition/:definitionId', {
 			templateUrl: '/views/forms/edit-definition.html?' + assetVersion,

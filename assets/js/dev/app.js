@@ -17,7 +17,7 @@ var _isLocal =
         window.location.hostname.match(/.*\.local$/i) ||
         window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 var _assetVersion = _isLocal ? Date.now() : _appVersion;
-var _apiEndpoint = _isLocal ? 'http://api.dinkomo.vagrant/0.1' : 'http://dinkomo-api.frnk.ca/0.1';
+var _apiEndpoint = _isLocal ? 'http://dinkomo.vagrant/0.1' : 'http://dinkomo.frnk.ca/0.1';
 
 nkomoLearningApp.constant('appVersion', _appVersion)
                 .constant('isLocalEnvironment', _isLocal)
